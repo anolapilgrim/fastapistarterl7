@@ -24,3 +24,17 @@ async def app(
             "user": user
         }
     )
+
+@app_router.get("/users", response_class=HTMLResponse)
+async def user(
+    request: Request,
+    user: AuthDep,
+    db:SessionDep
+):
+    return templates.TemplateResponse(
+        request=request, 
+        name="user.html",
+        context={
+            "user": user
+        }
+    )
